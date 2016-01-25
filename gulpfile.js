@@ -9,70 +9,87 @@ var livereload = require('gulp-livereload');
 var rename = require('gulp-rename');
 var mocha = require('gulp-mocha');
 var babel = require('gulp-babel');
+// requires browserify and vinyl-source-stream
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+// var notify = require("gulp-notify");
 
 // Live reload
 gulp.task('reload', function() {
-    livereload.reload();
+  livereload.reload();
+})
+
+gulp.task('browserify', function() {
+    // Grabs the app.js file
+  return browserify('client/pre-build/app.js')
+    // bundles it and creates a file called main.js
+    .bundle()
+    // .on('error', function(err) {
+    //  return notify().write(err);
+    // })
+    .pipe(source('main.js'))
+    // saves it the public/js/ directory
+    .pipe(gulp.dest('./public/js/'));
 })
 
 // Default
 gulp.task('default', function() {
-    livereload.listen();
-    gulp.start('build');
+  livereload.listen();
+  gulp.start('build');
 
-    gulp.watch(['client/pre-build/app.js', 'client/pre-build/**/*.js'], function() {
-        runSeq('buildJS', 'reload');
-    });
+  gulp.watch(['client/pre-build/app.js', 'client/pre-build/**/*.js'], function() {
+      runSeq('buildJS', 'reload');
+  });
 
-    gulp.watch(['client/pre-build/app.scss', 'client/pre-build/**/*.scss'], function() {
-        runSeq('buildCSS', 'reload');
-    });
+  gulp.watch(['client/pre-build/app.scss', 'client/pre-build/**/*.scss'], function() {
+      runSeq('buildCSS', 'reload');
+  });
 
-    // Reload when a template (.html) file changes.
-    gulp.watch(['client/**/*.html', 'server/*.html'], ['reload']);
+  // Reload when a template (.html) file changes.
+  gulp.watch(['client/**/*.html', 'server/*.html'], ['reload']);
 
-    gulp.watch(['server/**/*.js'], ['testServerJS']);
+  gulp.watch(['server/**/*.js'], ['testServerJS']);
 
 });
 
 
 // Database seed
 gulp.task('seedDB', function() {
-    run('node seed.js').exec();
+  run('node seed.js').exec();
 });
 
 
 // Build tasks
 //// Build all
 gulp.task('build', function() {
-    runSeq(['buildJS', 'buildCSS']);
+  runSeq(['buildJS', 'buildCSS']);
 });
 
 gulp.task('buildJS', function() {
-    return gulp.src(['./client/pre-build/app.js', './client/pre-build/**/*.js'])
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(concat('build.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./client/build'));
+  return gulp.src(['./client/pre-build/app.js', './client/pre-build/**/*.js'])
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(concat('build.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./client/build'));
 });
 
 gulp.task('buildCSS', function() {
-    return gulp.src('./client/pre-build/app.scss')
-        .pipe(plumber())
-        .pipe(sass())
-        .pipe(rename('build.css'))
-        .pipe(gulp.dest('./client/build'));
+  return gulp.src('./client/pre-build/app.scss')
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(rename('build.css'))
+    .pipe(gulp.dest('./client/build'));
 });
 
 
 // Testing
 gulp.task('testServerJS', function() {
-    return gulp.src('./server/**/*.spec.js', {
-            read: false
-        })
-        .pipe(mocha({
-            reporter: 'spec'
-        }));
+  return gulp.src('./server/**/*.spec.js', {
+    read: false
+  })
+  .pipe(mocha({
+    reporter: 'spec'
+  }));
 });

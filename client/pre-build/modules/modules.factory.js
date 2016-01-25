@@ -4,7 +4,7 @@ app.factory('ModulesFactory', function($http) {
       return $http.get('/api/modules/')
         .then(function(res) {
           return res.data;
-        });    
+        });
     }
   };
 });

@@ -13,6 +13,7 @@ var chinaCityUrls = [
                     { url: "http://www.stateair.net/web/post/1/5.html", name: 'Shenyang'}
                   ];
 
+
 chinaCityUrls.forEach(function(city){
   // scrape that bitch
   request(city, function(err, response, body){
@@ -33,8 +34,7 @@ chinaCityUrls.forEach(function(city){
         concentration = $(row).text().replace(/\s+/g, '').replace(/concentration:/gi, '')
       }
     })
-    console.log(country, time, aqi, status, concentration)
+    console.log("Country:", country, "Time:",time, "AQI:",aqi, "Status:", status, "Concentration", concentration)
   })
 
 })
-
