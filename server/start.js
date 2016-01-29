@@ -7,7 +7,7 @@ var chalk = require('chalk');
 var startDb = require('./db');
 var port = (process.env.PORT || 4545);
 var app;
-  
+
 // Start the server
 startDb
   .then(function() {

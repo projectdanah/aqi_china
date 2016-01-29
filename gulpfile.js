@@ -48,7 +48,7 @@ gulp.task('default', function() {
   // Reload when a template (.html) file changes.
   gulp.watch(['client/**/*.html', 'server/*.html'], ['reload']);
 
-  gulp.watch(['server/**/*.js'], ['testServerJS']);
+  gulp.watch(['server/**/*.js']/*, ['testServerJS']*/);
 
 });
 

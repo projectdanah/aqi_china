@@ -5,6 +5,7 @@ var logger = require('morgan');
 var chalk = require('chalk');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var aqiScraper = require('../get_aqi');
 
 var clientPath = path.join(__dirname, '../client');
 var buildPath = path.join(__dirname, '../client/build');    // for gulped files
@@ -26,7 +27,7 @@ app.use(express.static(buildPath));
 app.use(express.static(nodePath));
 app.use(express.static(imagePath));
 // app.use(express.static(bowerPath));
-
+aqiScraper.start();
 /*
 Provides a 404 for times
 Credit to `fsg` module for this one!
