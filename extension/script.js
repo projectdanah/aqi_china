@@ -19,7 +19,7 @@ function init(){
     console.log('got trade view');
     var cInt = setInterval(function(){
       getAqiData();
-    }, 360000);
+    }, 5000);
   }
 }
 
