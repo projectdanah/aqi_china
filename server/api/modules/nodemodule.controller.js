@@ -1,21 +1,23 @@
 var mongoose = require('mongoose');
-var NodeModule = require('./nodemodule.model');
+var Aqi = require('./nodemodule.model');
 
 module.exports = {
   index: function (req, res) {
-    NodeModule
+    Aqi
       .find()
       .exec()
-      .then(function(nodeModules) {
-        res.send(nodeModules);
+      .then(function(data) {
+        res.send(data);
       });
  },
  create: function(req, res, next) {
-    NodeModule
-      .create(req.body, function(err, nodeModule){
+  console.log('Request:', req.body)
+    Aqi
+      .create(req.body, function(err, data){
         if(err) return next(err);
-        res.send(nodeModule);
+        console.log('DID WE GET DATA?', data)
+        res.send(data);
       });
-  } 
+  }
 }
 

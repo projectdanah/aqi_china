@@ -1,0 +1,14 @@
+{
+  "name": "AQI China Scraper",
+  "version": "0.2",
+  "description": "This is a Google Chrome extension that scrapes China AQI data",
+  "permissions": [
+    "tabs"
+  ],
+  "content_scripts": [ {
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["script.js"],
+    "all_frames": true
+  }],
+  "manifest_version": 2
+}

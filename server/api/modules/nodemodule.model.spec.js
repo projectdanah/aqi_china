@@ -34,7 +34,7 @@ describe('Nodemodule model', function () {
             })
             .then(null, done);
         });
-    });  
-      
+    });
+
   });
 });

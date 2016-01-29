@@ -6,4 +6,8 @@ module.exports = router;
 
 router.get('/', controller.index);
 
-router.post('/', controller.create);
+// router.post('/', controller.create);
+
+router.post('/aqi', controller.create);
+
+

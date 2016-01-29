@@ -1,17 +1,24 @@
-//'use strict';
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-  title: {
+  aqi: {
     type: String,
     required: true
   },
-  repoUrl: {
+  country: {
+    type: String
+  },
+  concentration: {
+    type: String
+  },
+  time: {
+    type: String
+  },
+  status: {
     type: String
   }
 });
 
-var NodeModule = mongoose.model('Nodemodule', schema);
+var Aqi = mongoose.model('Aqi', schema);
 
-module.exports = NodeModule;
-
+module.exports = Aqi;

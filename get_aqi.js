@@ -34,7 +34,7 @@ chinaCityUrls.forEach(function(city){
         concentration = $(row).text().replace(/\s+/g, '').replace(/concentration:/gi, '')
       }
     })
-    console.log("Country:", country, "Time:",time, "AQI:",aqi, "Status:", status, "Concentration", concentration)
+    console.log("Country:", country, "\nTime:",time, "\nAQI:",aqi, "\nStatus:", status, "\nConcentration", concentration)
   })
 
 })
