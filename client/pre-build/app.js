@@ -8,12 +8,14 @@ global.moment = moment;
 var _ = require('lodash');
 global._ = _;
 
+var d3 = require('d3');
+global.d3 = d3;
+
 require('angular');
 require('bootstrap');
 require('angular-ui-router');
-require('d3');
 
-var app = angular.module('Meaniscule', ['ui.router']);
+var app = angular.module('ChinaAQI', ['ui.router']);
 require('./modules');
 require('./home');
 require('./navbar');

@@ -1,4 +1,4 @@
-angular.module('Meaniscule')
+angular.module('ChinaAQI')
 .controller('ModulesController', function($scope, $http, AqiFactory) {
 
   $scope.$on('$stateChangeSuccess', function () {

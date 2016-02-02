@@ -16,9 +16,16 @@ module.exports = {
     Aqi
       .create(req.body, function(err, data){
         if(err) return next(err);
-        console.log('DID WE GET DATA?', data)
         res.send(data);
       });
+  },
+  country: function(req, res, next){
+    Aqi
+    .find({country: { $regex : new RegExp(req.params.country, "i") }})
+    .exec()
+    .then(function(data){
+      res.send(data)
+    })
   }
 }
 

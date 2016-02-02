@@ -1,4 +1,4 @@
-angular.module('Meaniscule')
+angular.module('ChinaAQI')
 .directive("navbar", function(){
 	return {
 		restrict: "E",
