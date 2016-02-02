@@ -1,6 +1,7 @@
-app.factory('ModulesFactory', function($http) {
+angular.module('Meaniscule')
+.factory('AqiFactory', function($http) {
   return {
-    getNodeModules: function() {
+    getAqiData: function() {
       return $http.get('/api/modules/')
         .then(function(res) {
           return res.data;

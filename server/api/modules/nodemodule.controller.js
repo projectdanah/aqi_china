@@ -8,6 +8,7 @@ module.exports = {
       .exec()
       .then(function(data) {
         res.send(data);
+        console.log('dattta', data)
       });
  },
  create: function(req, res, next) {

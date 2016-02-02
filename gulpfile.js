@@ -12,6 +12,7 @@ var babel = require('gulp-babel');
 // requires browserify and vinyl-source-stream
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var gutil = require('gulp-util');
 // var notify = require("gulp-notify");
 
 // Live reload
@@ -24,12 +25,13 @@ gulp.task('browserify', function() {
   return browserify('client/pre-build/app.js')
     // bundles it and creates a file called main.js
     .bundle()
-    // .on('error', function(err) {
+    .on('error', function(e) {
+      gutil.log(e);
     //  return notify().write(err);
-    // })
-    .pipe(source('main.js'))
+    })
+    .pipe(source('build.js'))
     // saves it the public/js/ directory
-    .pipe(gulp.dest('./public/js/'));
+    .pipe(gulp.dest('./client/build'));
 })
 
 // Default
@@ -38,7 +40,7 @@ gulp.task('default', function() {
   gulp.start('build');
 
   gulp.watch(['client/pre-build/app.js', 'client/pre-build/**/*.js'], function() {
-      runSeq('buildJS', 'reload');
+      runSeq('browserify', 'reload');
   });
 
   gulp.watch(['client/pre-build/app.scss', 'client/pre-build/**/*.scss'], function() {
@@ -62,7 +64,7 @@ gulp.task('seedDB', function() {
 // Build tasks
 //// Build all
 gulp.task('build', function() {
-  runSeq(['buildJS', 'buildCSS']);
+  runSeq(['browserify', 'buildCSS']);
 });
 
 gulp.task('buildJS', function() {

@@ -1,4 +1,3 @@
-// var router = require('express').Router();
 var cheerio = require('cheerio');
 // var Promise = require('bluebird');
 // var request = Promise.promisify(require('request'));
