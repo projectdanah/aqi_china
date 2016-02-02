@@ -1,4 +1,17 @@
+var $ = require("jquery");
+global.$ = $;
+global.jQuery = $;
 
+var moment = require('moment');
+global.moment = moment;
+
+var _ = require('lodash');
+global._ = _;
+
+require('angular');
+require('bootstrap');
+require('angular-ui-router');
+require('d3');
 
 var app = angular.module('Meaniscule', ['ui.router']);
 require('./modules');
