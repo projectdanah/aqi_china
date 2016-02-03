@@ -6,10 +6,8 @@ module.exports = router;
 
 router.get('/', controller.index);
 
-// router.post('/', controller.create);
 router.get('/aqi', controller.index);
 router.get('/aqi/:country', controller.country)
-
 router.post('/aqi', controller.create);
 
 

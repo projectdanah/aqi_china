@@ -19,6 +19,7 @@ var app = angular.module('ChinaAQI', ['ui.router']);
 require('./modules');
 require('./home');
 require('./navbar');
+require('./directives');
 
 app.config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
    // This turns off hashbang urls (/#about) and changes it to something normal (/about)
